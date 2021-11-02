@@ -1,24 +1,77 @@
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:postgres@localhost:2727/lee16?schema=public"
+}
+
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
 }
 
-datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
+model Comment {
+  id         String   @id @db.Char(21)
+  text       String?  @db.VarChar(500)
+  page       Page?    @relation(fields: [pageId], references: [id])
+  pageId     Int?
+  user       User?    @relation(fields: [userId], references: [id])
+  userId     Int?
+  created_at DateTime @default(now())
 }
 
-model guestbook {
-  id         BigInt   @id @default(autoincrement())
-  email      String   @db.VarChar(256)
-  body       String   @db.VarChar(500)
-  created_by String   @db.VarChar(256)
-  created_at DateTime @default(now()) @db.DateTime(6)
-  updated_at DateTime @default(now()) @db.DateTime(6)
+model Account {
+  id                 String  @id @default(cuid())
+  userId             Int
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
 }
 
-model views {
-  slug  String @id @db.VarChar(128)
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       Int
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  comments      Comment[]
+
+
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Page {
+  id    Int    @id @default(autoincrement())
+  slug  String @unique
   count BigInt @default(1)
+
+
+  Comment Comment[]
 }

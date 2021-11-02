@@ -12,9 +12,9 @@
 
 ## Overview
 
-- `pages/api/*` - [API routes](https://nextjs.org/docs/api-routes/introduction) powering [`/dashboard`](https://leerob.io/dashboard), newsletter subscription, and post views.
+- `pages/api/*` - [API routes](https://nextjs.org/docs/api-routes/introduction) powering [`/dashboard`](https://mustaqimarifin.xyz/dashboard), newsletter subscription, and post views.
 - `pages/blog/*` - Static pre-rendered blog pages using [MDX](https://github.com/mdx-js/mdx).
-- `pages/dashboard` - [Personal dashboard](https://leerob.io/dashboard) containing metrics like sales, views, and subscribers.
+- `pages/dashboard` - [Personal dashboard](https://mustaqimarifin.xyz/dashboard) containing metrics like sales, views, and subscribers.
 - `pages/*` - All other static pages.
 
 ## Running Locally

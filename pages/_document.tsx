@@ -6,18 +6,41 @@ export default function Document(props) {
       <Head>
         <link
           rel="preload"
-          href="/fonts/ibm-plex-sans-var.woff2"
+          href="/fonts/GTAmerica-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/GTAmerica-Bold.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/GTAmerica-Black.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/GTAmerica-Medium.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/GTAmerica-Light.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
         <link href="/static/favicons/favicon.ico" rel="shortcut icon" />
-        <link href="/static/favicons/site.webmanifest" rel="manifest" />
-        <link
-          rel="preconnect"
-          href="https://cdn.usefathom.com"
-          crossOrigin=""
-        />
+
         <link
           href="/static/favicons/apple-touch-icon.png"
           rel="apple-touch-icon"
@@ -46,10 +69,9 @@ export default function Document(props) {
           content="/static/favicons/browserconfig.xml"
           name="msapplication-config"
         />
-        <meta content="14d2e73487fa6c71" name="yandex-verification" />
         <meta
-          content="eZSdmzAXlLkKhNJzfgwDqWORghxnJ8qR9_CHdAh5-xw"
           name="google-site-verification"
+          content="7NNir-HrC0xuQVP8ovcqs348JnVXiTZwx56pgaDQRWM"
         />
       </Head>
       <body className="bg-white dark:bg-black text-white dark:text-black">

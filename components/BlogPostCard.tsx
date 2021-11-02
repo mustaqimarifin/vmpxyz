@@ -6,7 +6,7 @@ import fetcher from 'lib/fetcher';
 import { Views } from 'lib/types';
 
 export default function BlogPostCard({ title, slug, gradient }) {
-  const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher);
+  const { data } = useSWR<Views>(`/api/page/${slug}`, fetcher);
   const views = data?.total;
 
   return (

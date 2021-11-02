@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { parseISO, format } from 'date-fns';
+import Comments from 'components/Comments';
 
 import Container from 'components/Container';
-import Subscribe from 'components/Subscribe';
 import ViewCounter from 'components/ViewCounter';
 import type { PropsWithChildren } from 'react';
 import type { Blog } from '.contentlayer/types';
@@ -11,7 +11,7 @@ const editUrl = (slug) =>
   `https://github.com/leerob/leerob.io/edit/main/data/blog/${slug}.mdx`;
 const discussUrl = (slug) =>
   `https://mobile.twitter.com/search?q=${encodeURIComponent(
-    `https://leerob.io/blog/${slug}`
+    `https://mustaqimarifin.xyz/blog/${slug}`
   )}`;
 
 export default function BlogLayout({
@@ -20,9 +20,9 @@ export default function BlogLayout({
 }: PropsWithChildren<{ post: Blog }>) {
   return (
     <Container
-      title={`${post.title} – Lee Robinson`}
+      title={`${post.title} – Mustaqim Arifin`}
       description={post.summary}
-      image={`https://leerob.io${post.image}`}
+      image={`https://mustaqimarifin.xyz${post.image}`}
       date={new Date(post.publishedAt).toISOString()}
       type="article"
     >
@@ -33,14 +33,14 @@ export default function BlogLayout({
         <div className="flex flex-col items-start justify-between w-full mt-2 md:flex-row md:items-center">
           <div className="flex items-center">
             <Image
-              alt="Lee Robinson"
+              alt="Mustaqim Arifin"
               height={24}
               width={24}
-              src="/avatar.jpg"
+              src="/makeup.jpeg"
               className="rounded-full"
             />
             <p className="ml-2 text-sm text-gray-700 dark:text-gray-300">
-              {'Lee Robinson / '}
+              {'Mustaqim Arifin / '}
               {format(parseISO(post.publishedAt), 'MMMM dd, yyyy')}
             </p>
           </div>
@@ -53,9 +53,7 @@ export default function BlogLayout({
         <div className="w-full mt-4 prose dark:prose-dark max-w-none">
           {children}
         </div>
-        <div className="mt-8">
-          <Subscribe />
-        </div>
+        <div className="mt-8"></div>
         <div className="text-sm text-gray-700 dark:text-gray-300">
           <a
             href={discussUrl(post.slug)}
@@ -72,6 +70,21 @@ export default function BlogLayout({
           >
             {'Edit on GitHub'}
           </a>
+        </div>
+        <div className="w-full mt-4 prose dark:prose-dark max-w-none">
+          <Comments />
+          <script src="https://giscus.app/client.js"
+        data-repo="mustaqimarifin/mstqmarfn"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkzODQxMjk2ODg="
+        data-category-id="DIC_kwDOFuVamM4B_rjd"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-theme="dark_dimmed"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
         </div>
       </article>
     </Container>

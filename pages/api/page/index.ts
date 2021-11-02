@@ -6,14 +6,14 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const totalViews = await prisma.views.aggregate({
+    const totalViews = await prisma.page.aggregate( {
       _sum: {
         count: true
       }
-    });
+    } );
 
-    return res.status(200).json({ total: totalViews._sum.count.toString() });
-  } catch (e) {
-    return res.status(500).json({ message: e.message });
+    return res.status( 200 ).json( { total: totalViews._sum.count.toString() } );
+  } catch ( e ) {
+    return res.status( 500 ).json( { message: e.message } );
   }
 }

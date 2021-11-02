@@ -117,7 +117,7 @@ to communicate with our database and increment the views for a given `id`.
 [API Routes](https://nextjs.org/docs/api-routes/introduction) provide a straight-forward solution for building an API inside Next.js.
 All you need to get started is an `api/` folder inside your main `pages/` folder where your routes live. Every file inside `pages/api/` is mapped to `/api/*`.
 
-```js:pages/api/views/[slug].js
+```js:pages/api/page/[slug].js
 import db from '../../lib/firebase';
 
 export default async (req, res) => {
@@ -145,7 +145,7 @@ For an API route to work, you need to export a default function (i.e., **request
 
 ## Testing View Counts
 
-Using your favorite REST client or your browser, you can now hit `http://localhost:3000/api/views/my-blog` to log a view.
+Using your favorite REST client or your browser, you can now hit `http://localhost:3000/api/page/my-blog` to log a view.
 We can confirm it was logged correctly by checking Firebase.
 
 <Image
@@ -171,7 +171,7 @@ $ yarn add swr
 
 Next, we need to update our API Route to fetch the views for a given post.
 
-```js:pages/api/views/[slug].js
+```js:pages/api/page/[slug].js
 import db from '../../lib/firebase';
 
 export default async (req, res) => {
@@ -214,12 +214,12 @@ async function fetcher(...args) {
 }
 
 export default function ViewCounter({ slug }) {
-  const { data } = useSWR(`/api/views/${slug}`, fetcher);
+  const { data } = useSWR(`/api/page/${slug}`, fetcher);
   const views = new Number(data?.total);
 
   useEffect(() => {
     const registerView = () =>
-      fetch(`/api/views/${slug}`, {
+      fetch(`/api/page/${slug}`, {
         method: 'POST'
       });
 
